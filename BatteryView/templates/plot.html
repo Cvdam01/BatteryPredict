@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block content %}
+  <h3>Choose Daterange</h3>
+  <div class="input-group input-daterange">
+    <input type="text" class="form-control" name="start_date" placeholder="Start Date">
+    <div class="input-group-addon">to</div>
+    <input type="text" class="form-control" name="end_date" placeholder="End Date">
+  </div>
+  <h1>Matplotlib Graph Example</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="x">X:</label>
+    <input type="number" name="slope" id="x" value="{{ x|safe }}">
+    <br><br>
+    <label for="y">Y:</label>
+    <input type="number" name="intercept" id="y" value="{{ y|safe }}">
+    <br><br>
+    <button type="submit">Plot</button>
+  </form>
+
+  {% if plot %}
+    <div>
+      <h2>Plot:</h2>
+      {{ plot|safe }}
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  {% if plot %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+      $('.input-daterange').datepicker({
+          format: "yyyy-mm-dd",
+          autoclose: true,
+          clearBtn: true,
+          todayHighlight: true,
+          //container:'.input-daterange'
+      });
+  </script>
+  {% endif %}
+{% endblock %}
