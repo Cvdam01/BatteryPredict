@@ -16,6 +16,8 @@
     <button type="submit">Plot</button>
     </form>
   </div>
+  <div id="another-graph">
+  </div>
   <h1>Matplotlib Graph Example</h1>
   <form method="post">
     {% csrf_token %}
@@ -60,7 +62,7 @@
                 url: frm.attr('action'),
                 data: frm.serialize(),
                 success: function (data) {
-                    alert('ok');
+                  $("#another-graph").html(data)
                 }
             });
             ev.preventDefault();
