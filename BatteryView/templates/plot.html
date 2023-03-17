@@ -9,9 +9,12 @@
 {% block content %}
   <h3>Choose Daterange</h3>
   <div class="input-group input-daterange">
-    <input type="text" class="form-control" name="start_date" placeholder="Start Date">
+    <form method="post" id="form-daterange" action="avg_graph">
+    <input type="text" class="form-control" name="startDate" placeholder="Start Date">
     <div class="input-group-addon">to</div>
-    <input type="text" class="form-control" name="end_date" placeholder="End Date">
+    <input type="text" class="form-control" name="endDate" placeholder="End Date">
+    <button type="submit">Plot</button>
+    </form>
   </div>
   <h1>Matplotlib Graph Example</h1>
   <form method="post">
@@ -46,6 +49,23 @@
           todayHighlight: true,
           //container:'.input-daterange'
       });
+  </script>
+
+  <script>
+    $(function () {
+        var frm = $('#form-daterange');
+        frm.submit(function (ev) {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    alert('ok');
+                }
+            });
+            ev.preventDefault();
+        });
+    });
   </script>
   {% endif %}
 {% endblock %}

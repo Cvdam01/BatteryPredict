@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from BatteryViewApp.views import graph_view
+from BatteryViewApp.views import graph_view, avg_price_graph_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graph/', graph_view, name='graph'),
+    path('avg_graph/', avg_price_graph_view),
 ]
