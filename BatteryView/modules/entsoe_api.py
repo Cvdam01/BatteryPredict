@@ -1,10 +1,10 @@
 import requests
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 import pandas as pd
 import lxml
 import re
 import pdb
+
 def getPriceDocument(startDate,endDate):
     loadStartDate = datetime.strftime(startDate,'%Y%m%d')
     loadEndDate = datetime.strftime(endDate,'%Y%m%d')
@@ -50,7 +50,7 @@ def getTestData(days_past = 1):
     endDate = datetime.now()
     startDate = endDate - timedelta(days=days_past)
     pricedoc = getPriceDocument(startDate,endDate)
-    print(pricedoc)
+    #print(pricedoc)
     
     pricedoc = re.sub(' xmlns="[^"]+"', '', pricedoc, count=1)
 
