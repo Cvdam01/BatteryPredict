@@ -9,7 +9,8 @@
 {% block content %}
   <h3>Choose Daterange</h3>
   <div class="input-group input-daterange">
-    <form method="post" id="form-daterange" action="/avg_graph">
+    <form method="post" id="form-daterange" action="/avg_graph/">
+      {% csrf_token %}
     <input type="text" class="form-control" name="startDate" placeholder="Start Date">
     <div class="input-group-addon">to</div>
     <input type="text" class="form-control" name="endDate" placeholder="End Date">
