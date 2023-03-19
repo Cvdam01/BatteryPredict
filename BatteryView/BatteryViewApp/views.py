@@ -54,7 +54,7 @@ def avg_price_graph_view(request):
         return None
     df = entsoe.getRangeData(startDate, endDate)
     avg = list(entsoe.getColStats(df))
-    x = range(0, len(avg))
+    x = list(range(0, len(avg)))
     y = avg
     trace = go.Scatter(
         x=x,
